@@ -22,6 +22,15 @@ public class ApiElements {
 
     public static SelenideElement LastImage = $x(("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[3]"));
     public static SelenideElement FirstImage = $x("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[1]");
+    public static SelenideElement nextButton = $(By.id("io.appium.android.apis:id/next"));
+    public static SelenideElement count = $x(("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.TextSwitcher/android.widget.TextView"));
+    public static SelenideElement Target = $(By.id("io.appium.android.apis:id/drag_dot_1"));
+    public static SelenideElement source = $(By.id("io.appium.android.apis:id/drag_dot_2"));
+    public static SelenideElement dragAndDrop = $x(("//android.widget.TextView[@content-desc=\"Drag and Drop\"]"));
+    public static SelenideElement WebView2 = $x(("//android.widget.TextView[@content-desc=\"WebView2\"]"));
+    public static SelenideElement Textbox = $x(("hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.webkit.WebView/android.webkit.WebView/android.view.View[2]"));
+
+
 
 
 //    public static SelenideElement TextSwitcher =  $x(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"TextSwitcher\"));"));

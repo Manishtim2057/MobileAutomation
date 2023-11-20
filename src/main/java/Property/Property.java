@@ -20,7 +20,7 @@ configureAppium();
 }
 @AfterMethod
 public void closeApp(){
-    driver.closeApp();
+    driver.close();
 }
 
 

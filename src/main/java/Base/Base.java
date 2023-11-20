@@ -62,9 +62,14 @@ public class Base {
 
     @AfterEach
     public void StopAndQuit() {
-        driver.closeApp();
-			driver.quit();
-			service.stop();
+//        driver.closeApp();
+//			driver.quit();
+//			service.stop();
+
+        if(service != null){
+            service.stop();
+        }
+
     }
 }
 
