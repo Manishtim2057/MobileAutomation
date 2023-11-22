@@ -1,7 +1,6 @@
 package ApiDemos_Gestures;
 
 import Base.Base;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.TouchAction;
@@ -24,6 +23,8 @@ import java.time.Duration;
 import java.util.Collections;
 
 import static ApiDemos_Gestures.ApiElements.seekBar;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -68,13 +69,15 @@ public class DemoGestures extends Base {
         ApiElements.ViewsOption.click();
 
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Seek Bar\"));"));
-        seekBar.should((Condition.visible));
+        seekBar.should((visible));
         seekBar.click();
         SelenideElement seekPoint = $x(("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.SeekBar"));
 
-        // Get the height of the seek bar (vertical position)
+        // Get the Very first starting point of the seekbar.
         int startX = seekPoint.getLocation().getX();
-        int endX =  startX + seekPoint.getSize().getWidth();
+        //Get the end point of the seekbar.
+        //int endX =  startX + seekPoint.getSize().getWidth();
+        //This code of line get the middle point of the seeker bar seek point center
         int middleY =  seekPoint.getLocation().getY()+seekPoint.getSize().getHeight() / 2;
 
 
@@ -98,10 +101,10 @@ public class DemoGestures extends Base {
         WebElement firstImage = $x("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[1]");
 
 
-        WebElement thirdImage = $x("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[3]");
-        WebElement thirdLastImage = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[2]"));
+//        WebElement thirdImage = $x("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[3]");
+//        WebElement thirdLastImage = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.Gallery/android.widget.ImageView[2]"));
 
-        WebElement Images = $(By.id("io.appium.android.apis:id/gallery"));
+//        WebElement Images = $(By.id("io.appium.android.apis:id/gallery"));
 
         //Before Swipe
         String Firstvalue = firstImage.getAttribute("focusable");
@@ -123,7 +126,7 @@ public class DemoGestures extends Base {
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"TextSwitcher\"));"));
         ApiElements.TextSwitcher.click();
         ApiElements.nextButton.click();
-        ApiElements.nextButton.shouldBe(Condition.visible, Duration.ofSeconds(3));
+        ApiElements.nextButton.shouldBe(visible, Duration.ofSeconds(3));
 
     }
 
@@ -172,5 +175,45 @@ public class DemoGestures extends Base {
         ApiElements.Textbox.click();
 //        ApiElements.Textbox.should(Condition.focused, Duration.ofSeconds(5));
     }
+    @Test
+    public void toastMessage() throws MalformedURLException, InterruptedException {
+        configureAppium();
+        ApiElements.ViewsOption.click();
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Secure View\"));"));
+        ApiElements.secureView.click();
+        ApiElements.popToast.shouldBe(visible, Duration.ofSeconds(3));
+        ApiElements.popToast.click();
+        ApiElements.firstToast.click();
+        ApiElements.toastBox.should(visible, Duration.ofSeconds(3));
+        ApiElements.toastmodel.should(visible, Duration.ofSeconds(3));
+//        ApiElements.toastBox.shouldHave(text("*Oh no! *bzzt* /n Transferred $1,000,000 to J.Phisher. Thankyou!"));
+    }
+
+    @Test
+    public void radioButton() throws MalformedURLException, InterruptedException {
+    configureAppium();
+    ApiElements.ViewsOption.click();
+    driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Secure View\"));"));
+    ApiElements.radioGroup.click();
+    ApiElements.radiofirst.click();
+    ApiElements.selectedChoice.shouldHave(text("You have selected: 2131296763"));
+    ApiElements.clear.click();
+    ApiElements.radiosecond.click();
+    ApiElements.selectedChoice.shouldHave(text("You have selected: 2131296352"));
+    ApiElements.clear.click();
+    ApiElements.selectedChoice.shouldHave(text("You have selected: (none)"));
+    }
+
+    @Test
+    public void picker() throws MalformedURLException, InterruptedException {
+        configureAppium();
+        ApiElements.ViewsOption.click();
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Picker\"));"));
+        ApiElements.picker.click();
+        ApiElements.selectedText.should(visible);
+        ApiElements.selectedText.scrollTo();
+
+    }
+
 }
 

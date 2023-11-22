@@ -29,6 +29,18 @@ public class ApiElements {
     public static SelenideElement dragAndDrop = $x(("//android.widget.TextView[@content-desc=\"Drag and Drop\"]"));
     public static SelenideElement WebView2 = $x(("//android.widget.TextView[@content-desc=\"WebView2\"]"));
     public static SelenideElement Textbox = $x(("hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.webkit.WebView/android.webkit.WebView/android.view.View[2]"));
+    public static SelenideElement secureView = $x("//android.widget.TextView[@content-desc=\"Secure View\"]");
+    public static SelenideElement popToast = $(By.id("io.appium.android.apis:id/secure_view_toast_button"));
+    public static SelenideElement firstToast = $(By.id("io.appium.android.apis:id/secure_view_unsecure_button"));
+    public static SelenideElement toastBox = $(By.id("android:id/contentPanel"));
+    public static SelenideElement toastmodel = $x("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout");
+    public static SelenideElement radioGroup = $x("//android.widget.TextView[@content-desc=\"Radio Group\"]");
+    public static SelenideElement radiofirst = $(By.id("io.appium.android.apis:id/snack"));
+    public static SelenideElement radiosecond = $(By.id("io.appium.android.apis:id/breakfast"));
+    public static SelenideElement clear = $(By.id("io.appium.android.apis:id/clear"));
+    public static SelenideElement selectedChoice = $(By.id("io.appium.android.apis:id/choice"));
+    public static SelenideElement selectedText = $(By.id("android.widget.EditText"));
+    public static SelenideElement picker = $x("//android.widget.TextView[@content-desc=\"Picker\"]");
 
 
 
